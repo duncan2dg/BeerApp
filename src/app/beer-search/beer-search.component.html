@@ -1,0 +1,72 @@
+<!--<mat-card-title><h1><img src="../../assets/images/common/beer_black.png"> Search for a Beer</h1></mat-card-title>
+
+<input 
+matInput
+ 
+type="text" 
+id="searchQuery" 
+#search
+(keyup.enter)="onEnter(search.value)"
+(blur)="onEnter(search.value)">
+
+
+<div class="active-cyan-3 active-cyan-4 mb-4">
+  <input class="form-control"
+  placeholder="Search"
+  aria-label="Search" 
+  type="text" [(ngModel)]="searchTerm">
+</div>
+-->
+<div style="padding: 20px 10px 15px 20px;">
+    <mat-card-title>  
+<mat-form-field class="searchField">
+    <span matPrefix><img src="../../assets/images/common/icon_search.png">  &nbsp;</span>
+  
+    <input matInput 
+      type="text" 
+      placeholder="Search for a beer (by name)" 
+      [(ngModel)]="searchTerm">
+    <button mat-button 
+      *ngIf="searchTerm" 
+      matSuffix mat-icon-button aria-label="Clear" 
+      (click)="searchTerm=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  </mat-card-title>
+  <strong>{{ (queriedBeerData | searchFilter: searchTerm)?.length}} beers available</strong>
+  </div>
+
+
+<div class="example-container mat-elevation-z8" 
+*ngFor="let beer of queriedBeerData | searchFilter: searchTerm">
+  <!--  <h2>{{beer.company}}</h2>    
+  <p><strong>Ingredients:</strong> {{beer.ingredients}}</p>
+    <p><strong>Strength:</strong> {{beer.strength}}%</p>
+    <p><strong>Country:</strong> {{beer.countryOfOrigin}}</p>
+    <p><strong>Style:</strong> {{beer.style}}</p>
+    <p><strong>Bottle size:</strong> {{beer.size}}ml</p>
+    <p><strong>Bottle colour:</strong> {{beer.colourOfBottle}}</p>
+    <p><strong>Rating:</strong> {{beer.rating}}/5</p>
+    <p><strong>Best before date:</strong> {{beer.bestBeforeDate}}</p>
+
+<hr>-->
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><h2><img src="../../assets/images/common/beer_black.png" height="30px"> {{beer.company}}</h2></mat-card-title>
+      <mat-card-subtitle>{{beer.description}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p><strong>Ingredients:</strong> {{beer.ingredients}}</p>
+        <p><strong>Strength:</strong> {{beer.strength}}%</p>
+        <p><strong>Country:</strong> {{beer.countryOfOrigin}}</p>
+        <p><strong>Style:</strong> {{beer.style}}</p>
+        <p><strong>Bottle size:</strong> {{beer.size}}ml</p>
+        <p><strong>Bottle colour:</strong> {{beer.colourOfBottle}}</p>
+        <p><strong>Rating:</strong> {{beer.rating}}/5</p>
+        <p><strong>Best before date:</strong> {{beer.bestBeforeDate}}</p>
+    </mat-card-content>
+</mat-card>
+</div>
